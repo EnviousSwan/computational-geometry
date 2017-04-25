@@ -8,15 +8,15 @@ object QuickHull {
 
 		val left = points.minBy(_.x)
 		val right = points.maxBy(_.x)
-		val line = Line(left, right)
+		val middle = Line(left, right)
 
 		val toTheLeft = points
 			.filterNot(p => p == left || p == right)
-			.filter(_.toTheLeft(line))
+			.filter(_ toTheLeftOf middle)
 
 		val toTheRight = points
 			.filterNot(p => p == left || p == right)
-			.filter(_.toTheRight(line))
+			.filter(_ toTheRightOf middle)
 
 		val (upperPoints, upperLines) = split(toTheLeft, left, right)
 		val (lowerPoints, lowerLines) = split(toTheRight, right, left)
@@ -40,17 +40,17 @@ object QuickHull {
 				(single, acc ::: List(left, right))
 
 			case _: List[Point] =>
-				val max = points.maxBy(_.distanceTo(Line(start, end)))
+				val max = points.maxBy(_ distanceTo Line(start, end))
 				val normal = Line(Line(start, end).centre, max)
 
 				val left = Line(start, max)
 				val right = Line(max, end)
 
 				val toTheLeft = points.filterNot(_ == max)
-					.filter(_.toTheLeft(Line(start, max)))
+					.filter(_ toTheLeftOf Line(start, max))
 
 				val toTheRight = points.filterNot(_ == max)
-					.filter(_.toTheLeft(Line(max, end)))
+					.filter(_ toTheLeftOf Line(max, end))
 
 				val (leftPoints, leftLines) = loop(toTheLeft, start, max, acc)
 				val (rightPoints, rightLines) = loop(toTheRight, max, end, acc)

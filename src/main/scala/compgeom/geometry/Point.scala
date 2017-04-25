@@ -2,10 +2,10 @@ package compgeom.geometry
 
 case class Point(x: Double, y: Double) extends Ordered[Point] {
 
-	def toTheLeft(line: Line): Boolean =
+	def toTheLeftOf(line: Line): Boolean =
 		crossProduct(line) < 0
 
-	def toTheRight(line: Line): Boolean =
+	def toTheRightOf(line: Line): Boolean =
 		crossProduct(line) >  0
 
 	def onThe(line: Line): Boolean =

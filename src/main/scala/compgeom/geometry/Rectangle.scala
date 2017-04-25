@@ -26,12 +26,5 @@ case class Rectangle(xmin: Double, ymin: Double,
 		dx * dx + dy * dy
 	}
 
-	override def equals(obj: scala.Any): Boolean = obj match {
-		case rect: Rectangle =>
-			xmin == rect.xmin && ymin == rect.ymin &&
-				xmax == rect.xmax && ymax == rect.ymax
-		case _ => false
-	}
-
 	override def toString: String = s"[$xmin, $ymin] x [$xmax, $ymax]"
 }
