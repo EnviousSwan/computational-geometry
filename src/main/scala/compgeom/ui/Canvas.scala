@@ -19,7 +19,7 @@ class Canvas extends Panel {
 	override def paintComponent(g: Graphics2D): Unit = {
 		g.clearRect(0, 0, size.width, size.height)
 		g.setBackground(Color.white)
-		g.setColor(Color.black)
+
 	}
 
 	private def drawLine(line: Line)(implicit g: Graphics2D): Unit = {
