@@ -1,4 +1,4 @@
-package compgeom.quickhull.ui
+package compgeom.convexhull.quickhull.ui
 
 import scala.swing.BorderPanel.Position._
 import scala.swing.event.ButtonClicked

@@ -1,7 +1,7 @@
-package compgeom.quickhull.ui
+package compgeom.convexhull.quickhull.ui
 
 import compgeom.geometry.{Line, Point}
-import compgeom.quickhull.logic.QuickHull
+import compgeom.convexhull.quickhull.logic.QuickHull
 import compgeom.ui.Canvas
 
 import scala.collection.mutable.ListBuffer

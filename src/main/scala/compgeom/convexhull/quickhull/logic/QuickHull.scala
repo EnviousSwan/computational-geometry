@@ -1,4 +1,4 @@
-package compgeom.quickhull.logic
+package compgeom.convexhull.quickhull.logic
 
 import compgeom.geometry.{Line, Point}
 
