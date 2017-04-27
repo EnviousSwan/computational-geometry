@@ -6,3 +6,4 @@ These algorithms include:
 
 * KDtree
 * QuickHull
+* Convex Hull of simple polygon
