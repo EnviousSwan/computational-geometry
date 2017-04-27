@@ -26,8 +26,8 @@ object Visualizer extends SimpleSwingApplication {
 		listenTo(canvas.mouse.clicks)
 
 		reactions += {
-			case MouseClicked(_, point, _, _, _) if addPoints.selected =>
-				canvas.addPoint(point.x, point.y)
+			case e: MouseClicked if addPoints.selected =>
+				canvas.addPoint(e.point.x, e.point.y)
 
 			case ButtonClicked(`polygon`) if !addPoints.selected =>
 				canvas.buildPolygon()

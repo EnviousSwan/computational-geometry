@@ -1,9 +1,9 @@
 package compgeom.ui
 
 import java.awt.Color
-import java.awt.geom.{Ellipse2D, Line2D}
+import java.awt.geom.{Ellipse2D, Line2D, Rectangle2D}
 
-import compgeom.geometry.{Line, Point}
+import compgeom.geometry.{Line, Point, Rectangle}
 
 import scala.swing.{Dimension, Graphics2D, Panel}
 
@@ -23,7 +23,7 @@ class Canvas extends Panel {
 		g.setBackground(Color.white)
 	}
 
-	private def drawLine(line: Line)(implicit g: Graphics2D): Unit = {
+	def drawLine(line: Line)(implicit g: Graphics2D): Unit = {
 		val Line(Point(x0, y0), Point(x1, y1)) = line
 
 		g.draw(new Line2D.Double(scaleX(x0), scaleY(y0),
@@ -54,6 +54,15 @@ class Canvas extends Panel {
 
 			drawLine(Line(points.head, points.last))
 		}
+
+	def drawRectangle(rectangle: Rectangle)
+	                 (implicit g: Graphics2D): Unit = {
+		val Rectangle(xmin, ymin, xmax, ymax) = rectangle
+
+		val list = List(Point(userX(xmin), userY(ymin)), Point(userX(xmin), userY(ymax)),
+			Point(userX(xmax), userY(ymax)), Point(userX(xmax), userY(ymin)))
+		drawPolygon(list)
+	}
 
 	private def scaleX(x: Double) = width * (x - xmin) / (xmax - xmin)
 
