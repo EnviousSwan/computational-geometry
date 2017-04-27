@@ -4,7 +4,7 @@ import compgeom.geometry.{Line, Point}
 
 object QuickHull {
 
-	def convexHull(points: List[Point]): (List[Point], List[Line]) = {
+	def build(points: List[Point]): (List[Point], List[Line]) = {
 
 		val left = points.minBy(_.x)
 		val right = points.maxBy(_.x)

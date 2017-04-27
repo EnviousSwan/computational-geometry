@@ -11,7 +11,6 @@ import scala.util.Random
 
 class QuickHullCanvas extends Canvas {
 
-	private val setSize = 20
 	private var points: List[Point] = List()
 	private var lines: ListBuffer[Line] = ListBuffer()
 
@@ -29,12 +28,11 @@ class QuickHullCanvas extends Canvas {
 	}
 
 	def buildQuickHull(): Unit = {
-
 		import scala.concurrent.ExecutionContext.Implicits.global
 
-		val (_, linesToDraw) = QuickHull.convexHull(points)
+		val (_, linesToDraw) = QuickHull.build(points)
 
-		linesToDraw.zipWithIndex foreach { case (line, i) =>
+		linesToDraw.zipWithIndex.foreach { case (line, i) =>
 			Future {
 				Thread.sleep(i * 100 + 100)
 				lines += line
@@ -43,6 +41,10 @@ class QuickHullCanvas extends Canvas {
 	}
 
 	private def generatePoints: List[Point] =
-		List.fill(setSize)(
+		List.fill(QuickHullCanvas.setSize)(
 			Point(Random.nextDouble(), Random.nextDouble()))
+}
+
+object QuickHullCanvas {
+	private val setSize = 20
 }

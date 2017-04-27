@@ -2,7 +2,7 @@ package compgeom.quickhull.ui
 
 import scala.swing.BorderPanel.Position._
 import scala.swing.event.ButtonClicked
-import scala.swing.{BorderPanel, Button, MainFrame, SimpleSwingApplication}
+import scala.swing.{BorderPanel, Button, FlowPanel, MainFrame, SimpleSwingApplication}
 
 object Visualizer extends SimpleSwingApplication {
 
@@ -10,24 +10,22 @@ object Visualizer extends SimpleSwingApplication {
 
 		title = "QuickHull"
 
-		val random = new Button { text = "Randomize" }
-		val quickHull = new Button { text = "QuickHull" }
+		val random = new Button("Randomize")
+		val quickHull = new Button("QuickHull")
+		val panel = new FlowPanel(random, quickHull)
 
 		val canvas = new QuickHullCanvas
 
 		contents = new BorderPanel {
-			layout(random) = West
-			layout(quickHull) = East
+			layout(panel) = North
 			layout(canvas) = South
 		}
 
 		listenTo(random, quickHull)
 
 		reactions += {
-			case ButtonClicked(component) if component == random =>
-				canvas.randomizePoints()
-			case ButtonClicked(component) if component == quickHull =>
-				canvas.buildQuickHull()
+			case ButtonClicked(`random`) => canvas.randomizePoints()
+			case ButtonClicked(`quickHull`) => canvas.buildQuickHull()
 		}
 	}
 }

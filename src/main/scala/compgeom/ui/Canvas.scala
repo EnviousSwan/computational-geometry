@@ -1,6 +1,6 @@
 package compgeom.ui
 
-import java.awt.{Color, Polygon}
+import java.awt.Color
 import java.awt.geom.{Ellipse2D, Line2D}
 
 import compgeom.geometry.{Line, Point}
@@ -10,16 +10,17 @@ import scala.swing.{Dimension, Graphics2D, Panel}
 class Canvas extends Panel {
 
 	private val (width, height) = (512, 512)
-	preferredSize = new Dimension(width, height)
 
 	private val (xmin, xmax) = (0.0, 1.0)
 	private val (ymin, ymax) = (0.0, 1.0)
+
 	private val penRadius = 0.01
+
+	preferredSize = new Dimension(width, height)
 
 	override def paintComponent(g: Graphics2D): Unit = {
 		g.clearRect(0, 0, size.width, size.height)
 		g.setBackground(Color.white)
-
 	}
 
 	private def drawLine(line: Line)(implicit g: Graphics2D): Unit = {
@@ -62,7 +63,9 @@ class Canvas extends Panel {
 
 	private def factorY(h: Double) = h * height / Math.abs(ymax - ymin)
 
-	private def userX(x: Double) = xmin + x * (xmax - xmin) / width
+	protected def userX(x: Double): Double =
+		xmin + x * (xmax - xmin) / width
 
-	private def userY(y: Double) = ymax - y * (ymax - ymin) / height
+	protected def userY(y: Double): Double =
+		ymax - y * (ymax - ymin) / height
 }
