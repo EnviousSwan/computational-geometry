@@ -4,6 +4,8 @@ Implementation and visualization of some computational geometry algorithms as a 
 
 These algorithms include:
 
-* KDtree
-* QuickHull
-* Convex Hull of simple polygon
+* Range Search
+  * KDTree
+* Convex Hull
+  * QuickHull
+  * Convex Hull of simple polygon - Lee's algorithm
