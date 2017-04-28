@@ -2,8 +2,6 @@ package compgeom.convexhull.quickhull.logic
 
 import compgeom.geometry.{Line, Point}
 
-import scala.util.Sorting
-
 object QuickHull {
 
 	def build(points: List[Point]): (List[Point], List[Line]) = {
@@ -66,13 +64,6 @@ object QuickHull {
 
 				(leftPoints ::: max :: rightPoints,
 					normal :: left :: right :: leftLines ::: rightLines)
-		}
-
-		def maxByDistance(a: Point, b: Point, line: Line) = {
-			if (a.distanceTo(line) > b.distanceTo(line)) a
-			else if (a.distanceTo(line) < b.distanceTo(line)) b
-			else if (a.x < b.x) a
-			else b
 		}
 
 		loop(points, start, end, List())
