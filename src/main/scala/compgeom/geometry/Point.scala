@@ -1,6 +1,6 @@
 package compgeom.geometry
 
-case class Point(x: Double, y: Double) extends Ordered[Point] {
+case class Point(x: Double = 0, y: Double = 0) extends Ordered[Point] {
 
 	def toTheLeftOf(line: Line): Boolean =
 		crossProduct(line) < 0
